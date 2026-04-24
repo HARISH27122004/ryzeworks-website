@@ -85,11 +85,11 @@ export default function ProjectGallery({ project, onBack }) {
     <div className="gallery-page">
       {/* ── Header ── */}
       <header className="gallery-header">
-        <button className="gallery-back" onClick={onBack}>← BACK</button>
         <div className="gallery-title-block">
           <h1 className="gallery-name">{project.name}</h1>
           <span className="gallery-type">{project.type} / {project.year}</span>
         </div>
+        <button className="gallery-back" onClick={onBack}>← BACK</button>
       </header>
       <p className="gallery-desc">{project.desc}</p>
 

@@ -17,6 +17,7 @@
 }
 
 .gallery-back {
+  margin-left: auto;
   background: var(--btn-bg-secondary);
   border: 1px solid var(--border-color);
   box-shadow: var(--material-effect);
@@ -263,6 +264,11 @@
     height: 42px;
     font-size: 22px;
   }
+  .gallery-back {
+  background: var(--btn-bg-primary);
+  color: var(--btn-color-primary);
+  border-color: var(--primary-light);
+}
 }
 
 @media (max-width: 480px) {

@@ -95,13 +95,14 @@ export default function Careers({ onBack, onNavigate }) {
     <>
 
       <div className="careers-page">
-        {/* ── Ambient glow ── */}
         <div className="careers-glow" aria-hidden="true" />
-        {/* ── Back button ── */}
-        <Navbar/>
-        <button className="careers-back-btn" onClick={onBack}>
-          ← Back to Home
-        </button>
+        <div className="careers-back-wrapper">
+          <button className="careers-back-btn" onClick={onBack}>
+            ←
+          </button>
+        </div>
+
+        {/* rest of your sections... */}
 
         {/* ══════════════════════════════
           HERO
@@ -259,7 +260,7 @@ export default function Careers({ onBack, onNavigate }) {
         </section>
 
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }

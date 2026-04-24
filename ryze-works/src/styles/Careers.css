@@ -21,8 +21,8 @@
   width: 800px;
   height: 500px;
   background: radial-gradient(ellipse at center,
-    rgba(102, 51, 238, 0.13) 0%,
-    transparent 70%);
+      rgba(102, 51, 238, 0.13) 0%,
+      transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -50,24 +50,28 @@
    BACK BUTTON
 ══════════════════════════════════════ */
 .careers-back-btn {
-  position: relative;
-  z-index: 2;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin: 100px 0 0 40px;
   padding: 10px 22px;
   font-family: var(--font-family-headings);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.1em;
-  color: var(--text-muted);
-  background: var(--btn-bg-secondary);
-  border: 1px solid var(--border-color);
+  background: var(--btn-bg-primary);
+  color: var(--btn-color-primary);
+  border-color: var(--primary-light);
   border-radius: 100px;
   cursor: pointer;
   box-shadow: var(--material-effect);
   transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.careers-back-wrapper {
+  position: fixed;
+  top: 24px;
+  right: 40px;
+  z-index: 100;
 }
 
 .careers-back-btn:hover {
@@ -78,8 +82,22 @@
 }
 
 @media (max-width: 540px) {
+  .careers-back-wrapper {
+    top: 16px;
+    right: 16px;
+  }
+
   .careers-back-btn {
-    margin: 84px 0 0 16px;
+    padding: 12px 22px;
+    font-size: 10px;
+    font-weight: 700;
+    background: var(--btn-bg-primary);
+    color: var(--btn-color-primary);
+    border-color: var(--primary-light);
+    border-radius: 100px;
+    cursor: pointer;
+    box-shadow: var(--material-effect);
+    transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
 }
 
@@ -120,8 +138,17 @@
 }
 
 @keyframes pulse-dot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50%       { opacity: 0.4; transform: scale(0.7); }
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.4;
+    transform: scale(0.7);
+  }
 }
 
 .careers-hero-title {
@@ -396,7 +423,7 @@
   height: 36px;
   border-radius: 50%;
   border: 1px solid var(--border-color);
-  background: rgba(255,255,255,0.03);
+  background: rgba(255, 255, 255, 0.03);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -422,8 +449,15 @@
 }
 
 @keyframes role-open {
-  from { opacity: 0; transform: translateY(-8px); }
-  to   { opacity: 1; transform: none; }
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .careers-role-desc {
@@ -449,7 +483,7 @@
   padding: 5px 14px;
   border-radius: 100px;
   border: 1px solid var(--border-color);
-  background: rgba(255,255,255,0.03);
+  background: rgba(255, 255, 255, 0.03);
   color: var(--text-body);
 }
 
@@ -474,7 +508,7 @@
 }
 
 .careers-apply-btn.applied {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255, 255, 255, 0.05);
   border-color: var(--border-color);
   color: var(--text-muted);
   cursor: default;

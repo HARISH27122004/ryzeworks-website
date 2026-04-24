@@ -472,6 +472,10 @@
   }
 }
 
+@media (max-width: 950px) {
+
+}
+
 /* =========================
    SMALL TABLET (≤ 900px)
 ========================= */
@@ -500,7 +504,7 @@
    MOBILE (≤ 768px)
 ========================= */
 
-@media (max-width: 768px) {
+@media (max-width: 950px) {
   .lp-nav {
     width: calc(100% - 24px);
     height: 62px;
