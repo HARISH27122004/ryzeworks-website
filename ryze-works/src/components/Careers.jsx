@@ -98,7 +98,7 @@ export default function Careers({ onBack, onNavigate }) {
         <div className="careers-glow" aria-hidden="true" />
         <div className="careers-back-wrapper">
           <button className="careers-back-btn" onClick={onBack}>
-            ←
+              <span className="careers-back-arrow">←</span>
           </button>
         </div>
 
