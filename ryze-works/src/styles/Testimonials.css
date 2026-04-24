@@ -1,0 +1,387 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
+
+/* ─── Design tokens (same system) ─── */
+:root {
+  --font-family-headings: "Roobert", "DM Sans", sans-serif;
+  --primary: #63e;
+  --primary-light: #8e64ff;
+  --grey-00: #fff;
+  --grey-10: #f4f4ff;
+  --grey-20: #ececfb;
+  --grey-30: #dfe1f4;
+  --grey-40: #babcd2;
+  --grey-60: #5e6077;
+  --grey-70: #383a4d;
+  --grey-80: #2a2b3a;
+  --grey-85: #212230;
+  --grey-90: #171825;
+  --grey-95: #0b0d1c;
+  --grey-100: #010314;
+  --bg-body: var(--grey-100);
+  --border-color: var(--grey-80);
+  --text-headings: #cfcdcd;
+  --text-body: var(--grey-30);
+  --text-muted: var(--grey-40);
+  --btn-bg-primary: #855cf1cc;
+  --btn-color-primary: #fff;
+  --material-effect: 0 0 0 2px #0000000d, 0 0 0 1px #ffffff1a, inset 0 0.5px 0 #ffffff80;
+}
+
+/* ─── Section wrapper ─── */
+.testimonials {
+  background: var(--bg-body);
+  padding: 110px 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ambient orbs */
+.testimonials::before,
+.testimonials::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.testimonials::before {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(102, 51, 238, 0.14) 0%, transparent 68%);
+  top: -160px;
+  left: -160px;
+}
+.testimonials::after {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(142, 100, 255, 0.10) 0%, transparent 70%);
+  bottom: -100px;
+  right: -80px;
+}
+
+/* ─── Header ─── */
+.testimonials-header {
+  text-align: center;
+  margin-bottom: 64px;
+  position: relative;
+  z-index: 1;
+
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.testimonials-header.visible {
+  opacity: 1;
+  transform: none;
+}
+
+.testimonials-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-family-headings);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--primary-light);
+  margin-bottom: 16px;
+}
+
+.testimonials-eyebrow-line {
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--primary-light);
+  opacity: 0.6;
+}
+
+.testimonials-title {
+  font-family: var(--font-family-headings);
+  font-size: clamp(36px, 4.5vw, 60px);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: var(--text-headings);
+  margin-bottom: 16px;
+}
+
+.testimonials-title span {
+  color: var(--primary-light);
+}
+
+.testimonials-subtitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  color: var(--text-muted);
+  max-width: 420px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ─── Grid ─── */
+.testimonials-grid {
+  max-width: 1160px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Card ─── */
+.tcard {
+  position: relative;
+  border-radius: 18px;
+  padding: 32px 28px 28px;
+  cursor: pointer;
+
+  /* glassmorphism */
+  background: rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 0 0 1px rgba(102, 51, 238, 0.0);
+
+  /* entrance */
+  opacity: 0;
+  transform: translateY(36px) scale(0.97);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+/* staggered reveal */
+.tcard:nth-child(1) { transition-delay: 0.05s; }
+.tcard:nth-child(2) { transition-delay: 0.17s; }
+.tcard:nth-child(3) { transition-delay: 0.29s; }
+
+.tcard.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* ── hover ── */
+.tcard:hover {
+  background: rgba(102, 51, 238, 0.07);
+  border-color: rgba(142, 100, 255, 0.28);
+  box-shadow:
+    0 8px 40px rgba(102, 51, 238, 0.18),
+    0 2px 8px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 0 0 1px rgba(142, 100, 255, 0.12);
+  transform: translateY(-5px) scale(1.012);
+}
+
+/* ── active / pressed ── */
+.tcard:active {
+  transform: translateY(-1px) scale(0.995);
+  box-shadow:
+    0 3px 14px rgba(102, 51, 238, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  background: rgba(102, 51, 238, 0.11);
+  border-color: rgba(142, 100, 255, 0.45);
+}
+
+/* ── purple glow spot behind each card ── */
+.tcard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(ellipse at 30% 0%, rgba(142, 100, 255, 0.10) 0%, transparent 65%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+.tcard:hover::before {
+  opacity: 1;
+}
+
+/* ─── Quote mark ─── */
+.tcard-quote-mark {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 52px;
+  line-height: 1;
+  color: var(--primary-light);
+  opacity: 0.35;
+  margin-bottom: 4px;
+  display: block;
+  user-select: none;
+  transition: opacity 0.3s ease;
+}
+.tcard:hover .tcard-quote-mark {
+  opacity: 0.65;
+}
+
+/* ─── Stars ─── */
+.tcard-stars {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 16px;
+}
+
+.tcard-star {
+  width: 14px;
+  height: 14px;
+  color: var(--primary-light);
+  fill: var(--primary-light);
+  transition: transform 0.2s ease;
+}
+.tcard:hover .tcard-star {
+  animation: starPop 0.4s ease forwards;
+}
+.tcard:hover .tcard-star:nth-child(1) { animation-delay: 0.00s; }
+.tcard:hover .tcard-star:nth-child(2) { animation-delay: 0.06s; }
+.tcard:hover .tcard-star:nth-child(3) { animation-delay: 0.12s; }
+.tcard:hover .tcard-star:nth-child(4) { animation-delay: 0.18s; }
+.tcard:hover .tcard-star:nth-child(5) { animation-delay: 0.24s; }
+
+@keyframes starPop {
+  0%   { transform: scale(1); }
+  45%  { transform: scale(1.5); }
+  100% { transform: scale(1); }
+}
+
+/* ─── Body text ─── */
+.tcard-body {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--text-body);
+  margin-bottom: 28px;
+  font-style: italic;
+  transition: color 0.3s ease;
+}
+.tcard:hover .tcard-body {
+  color: var(--grey-20);
+}
+
+/* ─── Divider ─── */
+.tcard-divider {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(142, 100, 255, 0.25),
+    transparent
+  );
+  margin-bottom: 20px;
+  transform: scaleX(0.4);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+.tcard:hover .tcard-divider {
+  transform: scaleX(1);
+}
+
+/* ─── Author ─── */
+.tcard-author {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.tcard-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(142, 100, 255, 0.25);
+  background: var(--grey-85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.tcard:hover .tcard-avatar {
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 3px rgba(142, 100, 255, 0.18);
+}
+
+/* initials fallback */
+.tcard-avatar-initials {
+  font-family: var(--font-family-headings);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--primary-light);
+  letter-spacing: -0.01em;
+  user-select: none;
+}
+
+.tcard-author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.tcard-name {
+  font-family: var(--font-family-headings);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-headings);
+  letter-spacing: 0.01em;
+}
+
+.tcard-role {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+.tcard-company-badge {
+  margin-left: auto;
+  font-family: var(--font-family-headings);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primary-light);
+  background: rgba(102, 51, 238, 0.12);
+  border: 1px solid rgba(142, 100, 255, 0.2);
+  padding: 4px 10px;
+  border-radius: 100px;
+  opacity: 0;
+  transform: translateX(6px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.tcard:hover .tcard-company-badge {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ─── Featured (middle card) ─── */
+.tcard--featured {
+  background: rgba(102, 51, 238, 0.08);
+  border-color: rgba(142, 100, 255, 0.2);
+  box-shadow:
+    0 0 0 1px rgba(142, 100, 255, 0.12),
+    0 12px 48px rgba(102, 51, 238, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+.tcard--featured:hover {
+  background: rgba(102, 51, 238, 0.13);
+  border-color: rgba(142, 100, 255, 0.4);
+  box-shadow:
+    0 0 0 1px rgba(142, 100, 255, 0.2),
+    0 16px 56px rgba(102, 51, 238, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  transform: translateY(-8px) scale(1.018);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 900px) {
+  .testimonials-grid { grid-template-columns: 1fr; max-width: 480px; }
+}
+@media (min-width: 901px) and (max-width: 1080px) {
+  .testimonials-grid { grid-template-columns: 1fr 1fr; max-width: 740px; }
+}
