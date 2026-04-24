@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "../styles/HorizontalScroll.css";
-import cover from '../coverimages/cover2.png';
+import cover from '../coverImages/cover2.png';
 
 export const projects = [
   {
