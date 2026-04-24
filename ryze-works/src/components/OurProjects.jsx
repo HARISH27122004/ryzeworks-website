@@ -68,6 +68,12 @@ export default function OurProjects() {
 
   return (
     <div className="explorer-backdrop" id="projects">
+      
+      <div className="services-heading">
+        <span className="services-our">Our</span>{" "}
+        <span className="services-text">Services</span>
+      </div>
+
       <div className="explorer-modal">
         <div className="explorer-layout">
 

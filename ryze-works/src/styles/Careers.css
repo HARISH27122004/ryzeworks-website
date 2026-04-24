@@ -47,6 +47,43 @@
 }
 
 /* ══════════════════════════════════════
+   BACK BUTTON
+══════════════════════════════════════ */
+.careers-back-btn {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 100px 0 0 40px;
+  padding: 10px 22px;
+  font-family: var(--font-family-headings);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  background: var(--btn-bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 100px;
+  cursor: pointer;
+  box-shadow: var(--material-effect);
+  transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.careers-back-btn:hover {
+  color: var(--text-headings);
+  border-color: var(--primary-light);
+  transform: translateX(-3px);
+  box-shadow: 0 0 20px rgba(142, 100, 255, 0.2);
+}
+
+@media (max-width: 540px) {
+  .careers-back-btn {
+    margin: 84px 0 0 16px;
+  }
+}
+
+/* ══════════════════════════════════════
    HERO
 ══════════════════════════════════════ */
 .careers-hero {
@@ -54,7 +91,7 @@
   z-index: 1;
   max-width: 860px;
   margin: 0 auto;
-  padding: 120px 40px 80px;
+  padding: 40px 40px 80px;
   text-align: center;
 }
 
@@ -505,7 +542,7 @@
 ══════════════════════════════════════ */
 @media (max-width: 900px) {
   .careers-hero {
-    padding: 100px 24px 60px;
+    padding: 32px 24px 60px;
   }
 
   .careers-perks,
@@ -529,7 +566,7 @@
 
 @media (max-width: 540px) {
   .careers-hero {
-    padding: 80px 16px 48px;
+    padding: 24px 16px 48px;
   }
 
   .careers-perks,

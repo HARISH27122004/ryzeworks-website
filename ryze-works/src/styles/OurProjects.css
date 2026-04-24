@@ -23,7 +23,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 60px 40px;
+  padding: 140px 40px 60px;
   background: transparent;
 }
 
@@ -380,6 +380,30 @@
   padding-left: 14px;
 }
 
+.services-heading {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-family-headings);
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.services-our {
+  color: #dfe1f4;
+}
+
+.services-text {
+  background: linear-gradient(135deg, var(--primary-light) 0%, #c084fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 /* ======================================
    Responsive
    ====================================== */
@@ -416,6 +440,10 @@
   .visual-test-quote { font-size: 12px; }
 
   .explorer-backdrop {
-    padding: 20px 16px;
+    padding: 100px 16px 20px;
+  }
+    .services-heading {
+    top: 24px;
+    font-size: 32px;
   }
 }

@@ -39,26 +39,33 @@ const MARQUEE_ITEMS = [
 const NAV = {
   Work: [
     { label: 'Case Studies', href: '#' },
-    { label: 'Projects',     href: '#projects' },
-    { label: 'Process',      href: '#' },
-    { label: 'Results',      href: '#' },
+    { label: 'Projects', href: '#' },
+    { label: 'Process', href: '#' },
+    { label: 'Results', href: '#' },
   ],
   Studio: [
     { label: 'About Us', href: '#' },
-    { label: 'Careers',  href: '#', badge: 'Hiring', page: 'careers' },
-    { label: 'Journal',  href: '#' },
-    { label: 'Contact',  href: '#contact' },
+    { label: 'Careers', href: '#', badge: 'Hiring' },
+    { label: 'Journal', href: '#' },
+    { label: 'Contact', href: '#contact-us' },
   ],
   Services: [
-    { label: 'Branding',   href: '#' },
-    { label: 'Web & App',  href: '#' },
-    { label: 'Motion',     href: '#' },
+    { label: 'Branding', href: '#' },
+    { label: 'Web & App', href: '#' },
+    { label: 'Motion', href: '#' },
     { label: 'Consulting', href: '#' },
   ],
 };
 
 export default function Footer({ onNavigate }) {
   const year = new Date().getFullYear();
+
+  const handleLinkClick = (e, label, href) => {
+    if (label === 'Careers' && onNavigate) {
+      e.preventDefault();
+      onNavigate('careers');
+    }
+  };
 
   return (
     <footer className="footer">
@@ -116,18 +123,9 @@ export default function Footer({ onNavigate }) {
           <div className="footer-col" key={title}>
             <p className="footer-col-title">{title}</p>
             <ul className="footer-nav">
-              {links.map(({ label, href, badge, page }) => (
+              {links.map(({ label, href, badge }) => (
                 <li key={label}>
-                  <a
-                    href={href}
-                    onClick={(e) => {
-                      if (page) {
-                        e.preventDefault();
-                        onNavigate(page);
-                        window.scrollTo({ top: 0, behavior: 'instant' });
-                      }
-                    }}
-                  >
+                  <a href={href} onClick={(e) => handleLinkClick(e, label, href)}>
                     {label}
                     {badge && <span className="footer-nav-badge">{badge}</span>}
                   </a>
@@ -141,16 +139,19 @@ export default function Footer({ onNavigate }) {
       {/* ── Bottom bar ── */}
       <div className="footer-bottom">
         <div className="footer-bottom-inner">
+
           <span className="footer-copy">
             © {year} Ryzeworks. Made with
             <span className="footer-copy-heart" aria-hidden="true">♥</span>
             and lots of coffee.
           </span>
+
           <nav className="footer-legal" aria-label="Legal links">
             <a href="#">Privacy</a>
             <a href="#">Terms</a>
             <a href="#">Cookies</a>
           </nav>
+
         </div>
       </div>
 

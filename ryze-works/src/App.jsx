@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Hero from './components/Hero';
 import ScrollFilm from './components/ScrollFilm';
 import './styles/Intro.css';
@@ -17,15 +17,33 @@ const frames = Object.keys(frameModules)
 
 const App = () => {
   const [stage, setStage] = useState('intro');
+  const [currentPage, setCurrentPage] = useState('home');
   const [selectedProject, setSelectedProject] = useState(null);
+  const scrollPosRef = useRef(0);
 
-  const handleProjectSelect = (project) => {
-    setSelectedProject(project);
+  const handleNavigate = (page) => {
+    scrollPosRef.current = window.scrollY;
+    setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
   const handleBack = () => {
-    setSelectedProject(null);
+    if (selectedProject) {
+      setSelectedProject(null);
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: scrollPosRef.current, behavior: 'instant' });
+      });
+    } else {
+      setCurrentPage('home');
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: scrollPosRef.current, behavior: 'instant' });
+      });
+    }
+  };
+
+  const handleProjectSelect = (project) => {
+    scrollPosRef.current = window.scrollY;
+    setSelectedProject(project);
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
@@ -69,37 +87,50 @@ const App = () => {
         />
       )}
 
-      {/* ── Stage 3: Main site or Gallery ── */}
+      {/* ── Stage 3: Main site ── */}
       {stage === 'hero' && (
         <>
-          {selectedProject ? (
-            <ProjectGallery
-              project={selectedProject}
+          {/* ── Careers Page ── */}
+          {currentPage === 'careers' && (
+            <Careers
               onBack={handleBack}
+              onNavigate={handleNavigate}
             />
-          ) : (
+          )}
+
+          {/* ── Main Home Page ── */}
+          {currentPage === 'home' && (
             <>
-              <section id="home">
-                <Hero />
-              </section>
+              {selectedProject ? (
+                <ProjectGallery
+                  project={selectedProject}
+                  onBack={handleBack}
+                />
+              ) : (
+                <>
+                  <section id="home">
+                    <Hero />
+                  </section>
 
-              <section id="projects">
-                <HorizontalScroll onProjectSelect={handleProjectSelect} />
-              </section>
+                  <section id="projects">
+                    <HorizontalScroll onProjectSelect={handleProjectSelect} />
+                  </section>
 
-              <section id="services">
-                <OurProjects />
-              </section>
+                  <section id="services">
+                    <OurProjects />
+                  </section>
 
-              <section id="testimonials">
-                <Testimonials />
-              </section>
+                  <section id="testimonials">
+                    <Testimonials />
+                  </section>
 
-              <section id="contact">
-                <Contact />
-              </section>
-              <Footer/>
-              <Careers/>
+                  <section id="contact">
+                    <Contact />
+                  </section>
+
+                  <Footer onNavigate={handleNavigate} />
+                </>
+              )}
             </>
           )}
         </>
