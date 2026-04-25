@@ -1,0 +1,449 @@
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700,800&f[]=satoshi@400,500,700&display=swap');
+
+:root {
+  --fe-bg: #000000;
+  --fe-modal-bg: rgba(255, 255, 255, 0.04);
+  --fe-surface: rgba(255, 255, 255, 0.05);
+  --fe-surface-hover: rgba(255, 255, 255, 0.09);
+  --fe-border: rgba(255, 255, 255, 0.08);
+  --fe-text: #ffffff;
+  --fe-text-muted: rgba(255, 255, 255, 0.6);
+  --fe-accent: #8e64ff;
+  --fe-radius-pill: 999px;
+  --fe-radius-card: 18px;
+  --fe-font-display: "Clash Display", sans-serif;  /* headlines, numbers, labels */
+  --fe-font: "Satoshi", sans-serif;                /* body, tags, descriptions */
+  --fe-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---- Backdrop ---- */
+.explorer-backdrop {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 140px 40px 60px;
+  background: transparent;
+}
+
+/* ---- Modal ---- */
+.explorer-modal {
+  position: relative;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  width: 100%;
+  max-width: 1500px;
+  min-height: 680px;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 32px 80px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* ---- Layout ---- */
+.explorer-layout {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  min-height: 680px;
+}
+
+/* ---- Sidebar ---- */
+.sidebar {
+  padding: 40px 24px 40px 32px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  position: relative;
+  z-index: 2;
+  overflow-y: auto;
+  max-height: 680px;
+  background: rgba(255, 255, 255, 0.02);
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.sidebar::-webkit-scrollbar { width: 3px; }
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(142, 100, 255, 0.3);
+  border-radius: 99px;
+}
+
+/* ---- Arrow Navigation ---- */
+.nav-arrows {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 4px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+}
+
+.arrow-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--fe-text);
+  font-size: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--fe-transition),
+              transform 0.3s cubic-bezier(0.34, 1.4, 0.64, 1),
+              opacity var(--fe-transition);
+}
+.arrow-btn:hover:not(:disabled) {
+  background: rgba(142, 100, 255, 0.18);
+  border-color: rgba(142, 100, 255, 0.35);
+  transform: scale(1.12);
+}
+.arrow-btn:active:not(:disabled) { transform: scale(0.92); }
+.arrow-btn:disabled { opacity: 0.25; cursor: not-allowed; }
+
+/* ---- Feature List ---- */
+.feature-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+/* ---- Feature Pill (collapsed) ---- */
+.feature-pill {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--fe-radius-pill);
+  color: var(--fe-text);
+  font-family: var(--fe-font);         /* Satoshi — UI label */
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition: background 0.25s ease,
+              border-color 0.25s ease,
+              transform 0.3s cubic-bezier(0.34, 1.4, 0.64, 1);
+  letter-spacing: -0.01em;
+}
+.feature-pill:hover {
+  background: rgba(142, 100, 255, 0.1);
+  border-color: rgba(142, 100, 255, 0.3);
+  transform: translateX(5px);
+}
+
+/* ---- Icon Circle ---- */
+.icon-circle {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 1;
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.5);
+  transition: border-color 0.25s ease, color 0.25s ease;
+}
+.active-icon {
+  border-color: var(--fe-accent);
+  color: var(--fe-accent);
+}
+
+/* ---- Feature Card (expanded / active) ---- */
+.feature-card {
+  background: rgba(142, 100, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(142, 100, 255, 0.18);
+  border-radius: var(--fe-radius-card);
+  padding: 16px 18px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 4px 24px rgba(142, 100, 255, 0.08);
+}
+
+.feature-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.feature-label {
+  font-family: var(--fe-font-display);  /* Clash Display — card title */
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--fe-text);
+  letter-spacing: -0.02em;
+}
+
+.feature-desc {
+  font-family: var(--fe-font);          /* Satoshi — readable body */
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--fe-text-muted);
+  margin: 0 0 12px;
+}
+.feature-desc strong {
+  color: var(--fe-text);
+  font-weight: 600;
+}
+
+/* ---- Tags — What We Did ---- */
+.service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0;
+}
+
+.service-tag {
+  font-family: var(--fe-font);          /* Satoshi — tag label */
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  padding: 3px 10px;
+  letter-spacing: 0.01em;
+  transition: background 0.25s ease,
+              border-color 0.25s ease,
+              color 0.25s ease,
+              transform 0.25s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+.service-tag:hover {
+  background: rgba(142, 100, 255, 0.14);
+  border-color: rgba(142, 100, 255, 0.35);
+  color: var(--fe-accent);
+  transform: translateY(-2px);
+}
+
+/* ---- Industries ---- */
+.service-industries {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.service-industry {
+  font-family: var(--fe-font-display);  /* Clash Display — uppercase badge */
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--fe-accent);
+  background: rgba(142, 100, 255, 0.08);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(142, 100, 255, 0.18);
+  border-radius: 999px;
+  padding: 3px 10px;
+  transition: background 0.25s ease,
+              transform 0.25s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+.service-industry:hover {
+  background: rgba(142, 100, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+/* ======================================
+   Visual Panel (right side)
+   ====================================== */
+.visual-panel {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.2);
+  min-height: 680px;
+}
+
+/* ---- Background image ---- */
+.visual-bg-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0;
+  transform: scale(1.06);
+  animation: imgFadeIn 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  transition: transform 8s ease;
+}
+
+.visual-panel:hover .visual-bg-image {
+  transform: scale(1.04);
+}
+
+@keyframes imgFadeIn {
+  0%   { opacity: 0; transform: scale(1.06); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* ---- Gradient over image ---- */
+.visual-image-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to left,
+    rgba(0, 0, 0, 0.0) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.72) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ---- Content layer ---- */
+.visual-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 32px 28px;
+}
+
+/* ---- Ghost number ---- */
+.visual-service-number {
+  font-family: var(--fe-font-display);  /* Clash Display — big decorative number */
+  font-size: 80px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.05);
+  line-height: 1;
+  user-select: none;
+  letter-spacing: -0.04em;
+}
+
+/* ---- Testimonial strip ---- */
+.visual-service-testimonial {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 300px;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 14px 16px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.visual-test-quote {
+  font-family: var(--fe-font);          /* Satoshi — italic quote */
+  font-size: 13px;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.65;
+  margin: 0;
+  padding-left: 14px;
+  border-left: 2px solid var(--fe-accent);
+}
+
+.visual-test-client {
+  font-family: var(--fe-font-display);  /* Clash Display — client name badge */
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--fe-accent);
+  padding-left: 14px;
+}
+
+.services-heading {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-family-headings);
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.services-our {
+  color: #dfe1f4;
+}
+
+.services-text {
+  background: linear-gradient(135deg, var(--primary-light) 0%, #c084fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ======================================
+   Responsive
+   ====================================== */
+@media (max-width: 900px) {
+  .explorer-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 320px;
+  }
+
+  .explorer-modal {
+    min-height: unset;
+  }
+
+  .visual-panel {
+    order: -1;
+    min-height: 320px;
+  }
+
+  .visual-image-gradient {
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.75) 0%,
+      rgba(0, 0, 0, 0.2) 60%,
+      transparent 100%
+    );
+  }
+
+  .sidebar {
+    padding: 24px 20px;
+    max-height: none;
+  }
+
+  .visual-service-number { font-size: 48px; }
+  .visual-test-quote { font-size: 12px; }
+
+  .explorer-backdrop {
+    padding: 100px 16px 20px;
+  }
+    .services-heading {
+    top: 24px;
+    font-size: 32px;
+  }
+}

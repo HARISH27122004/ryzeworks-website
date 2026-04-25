@@ -2,13 +2,13 @@ import { useState, useRef, useEffect } from 'react';
 import Hero from './components/Hero';
 import ScrollFilm from './components/ScrollFilm';
 import './styles/Intro.css';
-import HorizontalScroll from './components/HorizontalScroll';
 import ProjectGallery from './components/ProjectGallery';
-import OurProjects from './components/OurProjects';
+import OurServices from './components/OurServices';
 import Contact from './components/Contact';
 import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
 import Careers from './components/Careers';
+import OurProjects from './components/OurProjects';
 
 const frameModules = import.meta.glob('./images/ezgif-frame-*.jpg', { eager: true });
 const frames = Object.keys(frameModules)
@@ -112,12 +112,12 @@ const App = () => {
                     <Hero />
                   </section>
 
-                  <section id="projects">
-                    <HorizontalScroll onProjectSelect={handleProjectSelect} />
+                 <section id="services">
+                    <OurServices />
                   </section>
 
-                  <section id="services">
-                    <OurProjects />
+                  <section id="projects">
+                    <OurProjects onProjectSelect={handleProjectSelect} />
                   </section>
 
                   <section id="testimonials">

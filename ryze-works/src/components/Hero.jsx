@@ -16,9 +16,7 @@ export default function Hero() {
           </h1>
 
           <p className="lp-hero-sub">
-            The complete payments platform for modern businesses.
-            Process, issue, and optimize — all through a single,
-            developer-first API.
+            We Create Work that Elevates Your Brand to the Next Level.
           </p>
 
         </div>

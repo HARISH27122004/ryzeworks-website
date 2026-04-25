@@ -3,8 +3,8 @@ import "../styles/Navbar.css";
 
 const NAV_LINKS = [
   { label: "Home", href: "#home" },
-  { label: "Projects", href: "#projects" },
   { label: "Services", href: "#services" },
+  { label: "Projects", href: "#projects" },
   { label: "Testimonials", href: "#testimonials" },
   { label: "Contact", href: "#contact" },
 ];
@@ -16,9 +16,6 @@ export default function Navbar() {
 
   const lastY = useRef(0);
 
-  /* =====================================
-     NAVBAR SCROLL EFFECT
-  ===================================== */
   useEffect(() => {
     const handleScroll = () => {
       const currentY = window.scrollY;
@@ -39,9 +36,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  /* =====================================
-     ESC KEY + RESIZE CLOSE MOBILE MENU
-  ===================================== */
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") setMenuOpen(false);
@@ -60,9 +54,6 @@ export default function Navbar() {
     };
   }, []);
 
-  /* =====================================
-     BODY SCROLL LOCK WHEN MENU OPEN
-  ===================================== */
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
@@ -72,9 +63,6 @@ export default function Navbar() {
 
   return (
     <>
-      {/* =====================================
-          NAVBAR
-      ===================================== */}
       <nav
         className={`lp-nav 
           ${scrolled ? "scrolled" : ""} 
@@ -113,9 +101,6 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* =====================================
-          MOBILE FULLSCREEN MENU
-      ===================================== */}
       <div
         className={`fullscreen-menu ${menuOpen ? "open" : ""}`}
         role="dialog"

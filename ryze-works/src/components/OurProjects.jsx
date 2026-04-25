@@ -1,168 +1,288 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { services } from "../data/services";
+import { useEffect, useRef, useState } from "react";
 import "../styles/OurProjects.css";
+import cover from '../coverImages/cover2.png';
+import THM from '../coverImages/THM.png';
 
-const serviceImages = {
-  1: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=900&q=80",
-  2: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=900&q=80",
-  3: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=900&q=80",
-  4: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=900&q=80",
-  5: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80",
-  6: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=900&q=80",
-  7: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=900&q=80",
-  8: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=900&q=80",
-  9: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=900&q=80",
-  10: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=900&q=80",
-};
+export const projects = [
+  {
+    id: "vercel",
+    name: "NOSTIC",
+    type: "ICE CREAM",
+    year: "2K26",
+    desc: "Joined forces with the guardian knights of PaaS on high-level marketing tasks.",
+    color: "#0a0a0a",
+    accent: "#ffffff",
+    shape: "triangle",
+    image: `${cover}`,
+    gallery: [
+      "https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=1200&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=1200&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1544256718-3bcf237f3974?w=800&h=1200&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1600&h=900&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1541140532154-b024d705b90a?w=1200&auto=format&fit=crop&q=80",
+    ],
+  },
+  {
+    id: "ranboo",
+    name: "RANBOO",
+    type: "E-COMMERCE",
+    year: "2K26",
+    desc: "Reimagining the shopping experience for one of the cool kids.",
+    color: "#111",
+    accent: "#888",
+    shape: "person",
+    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&auto=format&fit=crop&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=1200&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1200&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=1200&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&auto=format&fit=crop&q=80",
+    ],
+  },
+  {
+    id: "dynaboard",
+    name: "DYNABOARD",
+    type: "WEBSITE",
+    year: "2K26",
+    desc: "Ushering in the new face of collaborative development.",
+    color: "#0d1117",
+    accent: "#58a6ff",
+    shape: "app",
+    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&auto=format&fit=crop&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=1200&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=1200&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1200&auto=format&fit=crop&q=80",
+    ],
+  },
+  {
+    id: "ai-lab",
+    name: "THE HAIR MECHANICS",
+    type: "SALOON",
+    year: "2K26",
+    desc: "Building the future of intelligent digital products.",
+    color: "#101010",
+    accent: "#9f7aea",
+    shape: "app",
+    image: `${THM}`,
+    gallery: [
+      "https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=1200&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1200&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=1200&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&auto=format&fit=crop&q=80",
+    ],
+  },
+  {
+    id: "cloud",
+    name: "CLOUD",
+    type: "SYSTEM",
+    year: "2K26",
+    desc: "Modern cloud-first systems with premium architecture.",
+    color: "#0b0b0b",
+    accent: "#ffffff",
+    shape: "triangle",
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&auto=format&fit=crop&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=1200&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&auto=format&fit=crop&q=80",
+    ],
+  },
+  {
+    id: "future-ui",
+    name: "FUTURE UI",
+    type: "DESIGN",
+    year: "2K26",
+    desc: "Premium futuristic interface design and interactions.",
+    color: "#111111",
+    accent: "#ffffff",
+    shape: "person",
+    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&auto=format&fit=crop&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=1200&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1200&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=1200&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=1200&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&auto=format&fit=crop&q=80",
+    ],
+  },
+];
 
-const VisualPanel = ({ feature, index }) => {
-  if (!feature) return null;
-  const img = serviceImages[feature.id];
+function ProjectCard({ project, index, onProjectSelect }) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+  const [hovered, setHovered] = useState(false);
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
+      { threshold: 0.1 }
+    );
+    if (ref.current) obs.observe(ref.current);
+    return () => obs.disconnect();
+  }, []);
+
+  const goToGallery = () => onProjectSelect(project);
 
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={feature.id}
-        className="visual-panel"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-      >
-        <img src={img} alt={feature.title} className="visual-bg-image" />
-        <div className="visual-image-gradient" />
-        <div className="visual-content">
-          <motion.div
-            className="visual-service-number"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.1 }}
-          >
-            {String(index + 1).padStart(2, "0")}
-          </motion.div>
+    <article
+      className={`project-card ${visible ? "visible" : ""}`}
+      ref={ref}
+      style={{ transitionDelay: `${index * 0.1}s` }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <div className="project-media">
+        {/* ── Wrapper constrains max-height; img inside is uncropped ── */}
+        <div
+          className="project-preview"
+          onClick={goToGallery}
+          style={{ background: project.color }}
+        >
+          <img
+            src={project.image}
+            alt={project.name}
+            className="project-preview-img"
+          />
 
-          <motion.div
-            className="visual-service-testimonial"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.15 }}
+          <div className="project-overlay" />
+
+          <button
+            className={`project-know-more ${hovered ? "show" : ""}`}
+            onClick={(e) => { e.stopPropagation(); goToGallery(); }}
+            aria-label={`View ${project.name} gallery`}
           >
-            <p className="visual-test-quote">"{feature.testimonial.quote}"</p>
-            <span className="visual-test-client">— {feature.testimonial.client}</span>
-          </motion.div>
+            <span className="cta-dot" />
+            KNOW MORE
+          </button>
         </div>
-      </motion.div>
-    </AnimatePresence>
+      </div>
+
+      <div className="project-info">
+        <div className="project-meta-left">
+          <span className="project-name">{project.name}</span>
+          <span className="project-type-label">
+            TYPE <strong>{project.type}</strong>
+          </span>
+        </div>
+        <div className="project-meta-right">
+          <span className="project-year">{project.year}</span>
+          <span className="project-dash">——</span>
+          <p className="project-desc">{project.desc}</p>
+        </div>
+      </div>
+    </article>
   );
-};
+}
 
-export default function OurProjects() {
-  const [activeIndex, setActiveIndex] = useState(0);
+export default function HorizontalScroll({ onProjectSelect }) {
+  const outerRef = useRef(null);
+  const trackRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 900);
 
-  const activeFeature = services[activeIndex];
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 900);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-  const moveUp = () => setActiveIndex((prev) => Math.max(0, prev - 1));
-  const moveDown = () =>
-    setActiveIndex((prev) => Math.min(services.length - 1, prev + 1));
+  useEffect(() => {
+    if (isMobile) return;
+
+    const outer = outerRef.current;
+    const track = trackRef.current;
+    if (!outer || !track) return;
+
+    let current = 0;
+    let target = 0;
+    const ease = 0.08;
+    let rafId;
+
+    const update = () => {
+      current += (target - current) * ease;
+      track.style.transform = `translate3d(${current}px,0,0)`;
+      rafId = requestAnimationFrame(update);
+    };
+
+    const onScroll = () => {
+      const rect = outer.getBoundingClientRect();
+      const scrollable = outer.offsetHeight - window.innerHeight;
+      if (scrollable <= 0) return;
+      const progress = Math.min(1, Math.max(0, -rect.top / scrollable));
+      const maxX = track.scrollWidth - window.innerWidth;
+      target = -progress * maxX;
+    };
+
+    rafId = requestAnimationFrame(update);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [isMobile]);
 
   return (
-    <div className="explorer-backdrop" id="projects">
-      
-      <div className="services-heading">
-        <span className="services-our">Our</span>{" "}
-        <span className="services-text">Services</span>
-      </div>
-
-      <div className="explorer-modal">
-        <div className="explorer-layout">
-
-          {/* Left sidebar */}
-          <div className="sidebar">
-            <div className="nav-arrows">
-              <button
-                className="arrow-btn"
-                onClick={moveUp}
-                disabled={activeIndex === 0}
-                aria-label="Move up"
-              >
-                ▲
-              </button>
-              <button
-                className="arrow-btn"
-                onClick={moveDown}
-                disabled={activeIndex === services.length - 1}
-                aria-label="Move down"
-              >
-                ▼
-              </button>
-            </div>
-
-            <ul className="feature-list">
-              {services.map((service, index) => {
-                const isActive = index === activeIndex;
-                return (
-                  <li key={service.id}>
-                    {isActive ? (
-                      <motion.div
-                        className="feature-card expanded"
-                        initial={{ opacity: 0, y: -10, scale: 0.96 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        transition={{ duration: 0.5, ease: [0.34, 1.2, 0.64, 1] }}
-                      >
-                        <div className="feature-card-header">
-                          <span className="icon-circle active-icon">−</span>
-                          <span className="feature-label">{service.title}</span>
-                        </div>
-                        <p className="feature-desc">
-                          <strong>{service.title}.</strong> {service.detail}
-                        </p>
-                        <div className="service-tags">
-                          {service.whatWeDid.map((w, i) => (
-                            <motion.span
-                              key={w}
-                              className="service-tag"
-                              initial={{ opacity: 0, scale: 0.85 }}
-                              animate={{ opacity: 1, scale: 1 }}
-                              transition={{ delay: 0.1 + i * 0.04, duration: 0.3 }}
-                            >
-                              {w}
-                            </motion.span>
-                          ))}
-                        </div>
-                        <div className="service-industries">
-                          {service.industries.map((ind, i) => (
-                            <motion.span
-                              key={ind}
-                              className="service-industry"
-                              initial={{ opacity: 0, scale: 0.85 }}
-                              animate={{ opacity: 1, scale: 1 }}
-                              transition={{ delay: 0.2 + i * 0.05, duration: 0.3 }}
-                            >
-                              {ind}
-                            </motion.span>
-                          ))}
-                        </div>
-                      </motion.div>
-                    ) : (
-                      <button
-                        className="feature-pill"
-                        onClick={() => setActiveIndex(index)}
-                      >
-                        <span className="icon-circle">+</span>
-                        <span className="feature-label">{service.title}</span>
-                      </button>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-
-          {/* Right visual */}
-          <VisualPanel feature={activeFeature} index={activeIndex} />
+    <section
+      className="showcase-outer"
+      ref={outerRef}
+      style={!isMobile ? { height: `${projects.length * 100}vh` } : undefined}
+    >
+      {/* Marquee */}
+      <div className="showcase-marquee">
+        <div className="showcase-marquee-track">
+          {[
+            "CREATE", 
+            "INSPIRE", 
+            "ELEVATE", 
+            "DOMINATE",
+            "CREATE", 
+            "INSPIRE", 
+            "ELEVATE", 
+            "DOMINATE"
+          ].map((text, i) => (
+            <span key={i}>{text} /&nbsp;</span>
+          ))}
         </div>
       </div>
-    </div>
+
+      {isMobile ? (
+        <div className="showcase-mobile-stack">
+          {projects.map((project, index) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              index={index}
+              onProjectSelect={onProjectSelect}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className="showcase-sticky">
+          <div className="showcase-projects" ref={trackRef}>
+            {projects.map((project, index) => (
+              <div className="showcase-panel" key={`${project.id}-${index}`}>
+                <ProjectCard
+                  project={project}
+                  index={index}
+                  onProjectSelect={onProjectSelect}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </section>
   );
 }
