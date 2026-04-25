@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import "../styles/OurProjects.css";
 import cover from '../coverImages/cover2.png';
 import THM from '../coverImages/THM.png';
+import SGA from '../coverImages/SGA.png'
 
 export const projects = [
   {
@@ -25,14 +26,14 @@ export const projects = [
   },
   {
     id: "ranboo",
-    name: "RANBOO",
-    type: "E-COMMERCE",
+    name: "SRI GANESH ACADEMY",
+    type: "EDUCATION",
     year: "2K26",
     desc: "Reimagining the shopping experience for one of the cool kids.",
     color: "#111",
     accent: "#888",
     shape: "person",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&auto=format&fit=crop&q=80",
+    image: `${SGA}`,
     gallery: [
       "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200&auto=format&fit=crop&q=80",
       "https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=1200&auto=format&fit=crop&q=80",
