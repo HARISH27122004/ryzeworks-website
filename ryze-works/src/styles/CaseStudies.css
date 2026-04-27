@@ -584,12 +584,10 @@
 .cs-btn--primary {
   background: var(--primary);
   color: #fff;
-  box-shadow: 0 0 30px rgba(102, 51, 238, 0.35);
 }
 
 .cs-btn--primary:hover {
   background: var(--primary-light);
-  box-shadow: 0 0 44px rgba(102, 51, 238, 0.55);
   transform: translateY(-2px);
 }
 
@@ -618,4 +616,11 @@
     top: 16px;
     left: 16px;
   }
+}
+
+@media (max-width: 443px) {
+  .br-hero__actions {
+    display: flex;
+    flex-direction: column;
+}
 }
