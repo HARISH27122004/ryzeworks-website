@@ -2,21 +2,21 @@
 
 /* ── Variables ── */
 :root {
-  --primary:       #63e;
+  --primary: #63e;
   --primary-light: #8e64ff;
-  --grey-00:  #fff;
-  --grey-10:  #f4f4ff;
-  --grey-20:  #ececfb;
-  --grey-30:  #dfe1f4;
-  --grey-40:  #babcd2;
-  --grey-60:  #5e6077;
-  --grey-70:  #383a4d;
-  --grey-80:  #2a2b3a;
-  --grey-85:  #212230;
-  --grey-90:  #171825;
-  --grey-95:  #0b0d1c;
+  --grey-00: #fff;
+  --grey-10: #f4f4ff;
+  --grey-20: #ececfb;
+  --grey-30: #dfe1f4;
+  --grey-40: #babcd2;
+  --grey-60: #5e6077;
+  --grey-70: #383a4d;
+  --grey-80: #2a2b3a;
+  --grey-85: #212230;
+  --grey-90: #171825;
+  --grey-95: #0b0d1c;
   --grey-100: #010314;
-  --error:    #e23453;
+  --error: #e23453;
   --font-family-headings: "DM Sans", sans-serif;
   --font-display: 'DM Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-body: "DM Sans", sans-serif;
@@ -64,7 +64,6 @@
 .cs-ambient__orb--2 {
   width: 500px;
   height: 500px;
-  background: #1db97a;
   bottom: 10%;
   left: -150px;
   animation: cs-orb-drift 18s ease-in-out infinite alternate-reverse;
@@ -78,8 +77,13 @@
 }
 
 @keyframes cs-orb-drift {
-  from { transform: translate(0, 0) scale(1); }
-  to   { transform: translate(40px, 30px) scale(1.08); }
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+
+  to {
+    transform: translate(40px, 30px) scale(1.08);
+  }
 }
 
 /* ══════════════════════════════════════
@@ -93,8 +97,8 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   color: var(--grey-40);
   padding: 8px 18px;
   border-radius: 999px;
@@ -106,8 +110,8 @@
 }
 
 .cs-back-btn:hover {
-  background: rgba(255,255,255,0.12);
-  border-color: rgba(255,255,255,0.25);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
   color: var(--grey-00);
 }
 
@@ -152,8 +156,17 @@
 }
 
 @keyframes cs-pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50%       { opacity: 0.5; transform: scale(0.75); }
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(0.75);
+  }
 }
 
 .cs-hero__heading {
@@ -313,7 +326,7 @@
 .cs-card:hover {
   border-color: color-mix(in srgb, var(--accent) 40%, transparent);
   box-shadow: 0 0 40px color-mix(in srgb, var(--accent) 15%, transparent),
-              0 20px 60px rgba(0,0,0,0.4);
+    0 20px 60px rgba(0, 0, 0, 0.4);
   transform: translateY(-4px);
 }
 
@@ -327,6 +340,7 @@
 
 /* Stack on smaller screens */
 @media (max-width: 900px) {
+
   .cs-card--large,
   .cs-card--small {
     grid-column: span 12;
@@ -346,9 +360,8 @@
   width: 100%;
   height: 100%;
   background: linear-gradient(135deg,
-    color-mix(in srgb, var(--accent) 12%, var(--grey-95)) 0%,
-    var(--grey-95) 100%
-  );
+      color-mix(in srgb, var(--accent) 12%, var(--grey-95)) 0%,
+      var(--grey-95) 100%);
   transition: transform 0.5s ease;
 }
 
@@ -360,8 +373,8 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
@@ -373,9 +386,8 @@
   left: 20%;
   border-radius: 50%;
   background: radial-gradient(circle,
-    color-mix(in srgb, var(--accent) 35%, transparent) 0%,
-    transparent 70%
-  );
+      color-mix(in srgb, var(--accent) 35%, transparent) 0%,
+      transparent 70%);
   filter: blur(40px);
   transition: opacity 0.4s;
   opacity: 0.7;
@@ -516,9 +528,8 @@
   position: absolute;
   inset: 0;
   background: radial-gradient(ellipse 60% 60% at 50% 50%,
-    rgba(102, 51, 238, 0.18) 0%,
-    transparent 70%
-  );
+      rgba(102, 51, 238, 0.18) 0%,
+      transparent 70%);
   pointer-events: none;
 }
 
@@ -571,12 +582,12 @@
 .cs-btn--primary {
   background: var(--primary);
   color: #fff;
-  box-shadow: 0 0 30px rgba(102,51,238,0.35);
+  box-shadow: 0 0 30px rgba(102, 51, 238, 0.35);
 }
 
 .cs-btn--primary:hover {
   background: var(--primary-light);
-  box-shadow: 0 0 44px rgba(102,51,238,0.55);
+  box-shadow: 0 0 44px rgba(102, 51, 238, 0.55);
   transform: translateY(-2px);
 }
 
