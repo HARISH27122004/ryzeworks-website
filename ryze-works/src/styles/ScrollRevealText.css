@@ -1,0 +1,59 @@
+/* ── ScrollRevealText ───────────────────────────────────────────────────── */
+
+.srt-section {
+  /* Normal flow — scrolls naturally with the page, no height tricks */
+  padding: 12vh 6vw 16vh;
+  background: var(--grey-100);
+}
+
+.srt-text {
+  max-width: 960px;
+  width: 100%;
+
+  font-family: var(--font-family-headings);
+  font-size: clamp(2rem, 5.5vw, 4.8rem);
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #ffffff;
+  line-height: 1.12;
+
+  /* Allow chars to wrap naturally */
+  word-break: break-word;
+}
+
+/* Individual character span */
+.srt-char {
+  display: inline;
+  opacity: 0.20;           /* JS drives this per frame */
+  will-change: opacity;
+  /* No transition — instant per-scroll response, matches the reference */
+}
+
+/* Space between words — not animated, just layout */
+.srt-space {
+  display: inline;
+  opacity: 1;
+  white-space: pre;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .srt-section {
+    padding: 10vh 5vw 14vh;
+  }
+
+  .srt-text {
+    font-size: clamp(1.6rem, 7.5vw, 3rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .srt-section {
+    padding: 8vh 5vw 12vh;
+  }
+
+  .srt-text {
+    font-size: clamp(1.3rem, 9vw, 2.2rem);
+  }
+}

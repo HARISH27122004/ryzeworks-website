@@ -98,7 +98,10 @@ export default function Careers({ onBack, onNavigate }) {
         <div className="careers-glow" aria-hidden="true" />
         <div className="careers-back-wrapper">
           <button className="careers-back-btn" onClick={onBack}>
-              <span className="careers-back-arrow">←</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M19 12H5M12 19l-7-7 7-7" />
+            </svg>
+            Back
           </button>
         </div>
 
@@ -260,7 +263,7 @@ export default function Careers({ onBack, onNavigate }) {
         </section>
 
       </div>
-      <Footer />
+      <Footer onNavigate={onNavigate} />
     </>
   );
 }

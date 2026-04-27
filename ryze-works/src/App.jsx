@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import Hero from './components/Hero';
 import ScrollFilm from './components/ScrollFilm';
 import './styles/Intro.css';
@@ -9,6 +9,9 @@ import Testimonials from './components/Testimonials';
 import Footer from './components/Footer';
 import Careers from './components/Careers';
 import OurProjects from './components/OurProjects';
+import AboutUs from './components/AboutUs';
+import CaseStudies from './components/CaseStudies';
+import Branding from './components/Branding';
 
 const frameModules = import.meta.glob('./images/ezgif-frame-*.jpg', { eager: true });
 const frames = Object.keys(frameModules)
@@ -21,10 +24,16 @@ const App = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const scrollPosRef = useRef(0);
 
-  const handleNavigate = (page) => {
+  const handleNavigate = (page, scrollTo) => {
     scrollPosRef.current = window.scrollY;
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'instant' });
+
+    if (scrollTo) {
+      setTimeout(() => {
+        document.getElementById(scrollTo)?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
   };
 
   const handleBack = () => {
@@ -98,6 +107,27 @@ const App = () => {
             />
           )}
 
+          {/* ── About Us Page ── */}
+          {currentPage === 'about' && (
+            <AboutUs
+              onBack={handleBack}
+              onNavigate={handleNavigate}
+            />
+          )}
+
+          {currentPage === 'casestudies' && (
+            <CaseStudies
+              onBack={handleBack}
+              onNavigate={handleNavigate}
+            />
+          )}
+
+          {currentPage === 'branding' && (
+            <Branding 
+            onBack={handleBack} 
+            onNavigate={handleNavigate} />
+          )}
+
           {/* ── Main Home Page ── */}
           {currentPage === 'home' && (
             <>
@@ -112,7 +142,7 @@ const App = () => {
                     <Hero />
                   </section>
 
-                 <section id="services">
+                  <section id="services">
                     <OurServices />
                   </section>
 

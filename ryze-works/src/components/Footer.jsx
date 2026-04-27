@@ -39,21 +39,15 @@ const MARQUEE_ITEMS = [
 const NAV = {
   Work: [
     { label: 'Case Studies', href: '#' },
-    { label: 'Projects', href: '#' },
-    { label: 'Process', href: '#' },
-    { label: 'Results', href: '#' },
+    { label: 'Projects', href: '#projects' },
   ],
   Studio: [
     { label: 'About Us', href: '#' },
     { label: 'Careers', href: '#', badge: 'Hiring' },
-    { label: 'Journal', href: '#' },
-    { label: 'Contact', href: '#contact-us' },
   ],
   Services: [
     { label: 'Branding', href: '#' },
     { label: 'Web & App', href: '#' },
-    { label: 'Motion', href: '#' },
-    { label: 'Consulting', href: '#' },
   ],
 };
 
@@ -64,6 +58,22 @@ export default function Footer({ onNavigate }) {
     if (label === 'Careers' && onNavigate) {
       e.preventDefault();
       onNavigate('careers');
+    }
+    if (label === 'About Us' && onNavigate) {
+      e.preventDefault();
+      onNavigate('about');
+    }
+    if (label === 'Case Studies' && onNavigate) {   // ← add this
+      e.preventDefault();
+      onNavigate('casestudies');
+    }
+    if (label === 'Projects' && onNavigate) {
+      e.preventDefault();
+      onNavigate('home', 'projects');  // navigates home then scrolls to #projects
+    }
+    if (label === 'Branding' && onNavigate) {
+      e.preventDefault();
+      onNavigate('branding');
     }
   };
 
