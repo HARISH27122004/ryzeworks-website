@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import "../styles/Navbar.css";
 
 const NAV_LINKS = [
@@ -13,6 +13,10 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [showNav, setShowNav] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = useCallback(() => {
+    setMenuOpen(prev => !prev);
+  }, []);
 
   const lastY = useRef(0);
 
@@ -91,7 +95,7 @@ export default function Navbar() {
         {/* Mobile Hamburger */}
         <button
           className={`hamburger-btn ${menuOpen ? "active" : ""}`}
-          onClick={() => setMenuOpen((prev) => !prev)}
+          onClick={toggleMenu}
           aria-label={menuOpen ? "Close Menu" : "Open Menu"}
           aria-expanded={menuOpen}
         >

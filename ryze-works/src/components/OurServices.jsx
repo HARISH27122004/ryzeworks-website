@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { services } from "../data/services";
 import "../styles/OurServices.css";
@@ -65,6 +65,11 @@ export default function OurProjects() {
   const moveUp = () => setActiveIndex((prev) => Math.max(0, prev - 1));
   const moveDown = () =>
     setActiveIndex((prev) => Math.min(services.length - 1, prev + 1));
+
+  const handlePillClick = useCallback((e) => {
+    const idx = Number(e.currentTarget.dataset.index);
+    if (!isNaN(idx)) setActiveIndex(idx);
+  }, []);
 
   return (
     <div className="explorer-backdrop">
@@ -147,7 +152,8 @@ export default function OurProjects() {
                     ) : (
                       <button
                         className="feature-pill"
-                        onClick={() => setActiveIndex(index)}
+                        data-index={index}
+                        onClick={handlePillClick}
                       >
                         <span className="icon-circle">+</span>
                         <span className="feature-label">{service.title}</span>

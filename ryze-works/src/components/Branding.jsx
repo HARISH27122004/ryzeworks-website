@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import '../styles/Branding.css';
 import Footer from '../components/Footer';
+import useInView from '../hooks/useInView';
 
 /* ── What we do ── */
 const PILLARS = [
@@ -52,19 +53,6 @@ const WORK = [
   { title: 'Prism Agency',      label: 'Design System',        accent: '#f5a623', shape: 'hexagon'  },
 ];
 
-function useInView(threshold = 0.12) {
-  const ref = useRef(null);
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setInView(true); obs.disconnect(); } },
-      { threshold }
-    );
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, [threshold]);
-  return [ref, inView];
-}
 
 function PillarCard({ pillar, index }) {
   const [ref, inView] = useInView(0.1);
@@ -110,6 +98,14 @@ export default function Branding({ onBack, onNavigate }) {
   const [introRef,  introVisible]  = useInView(0.15);
   const [processRef,processVisible]= useInView(0.1);
   const [workRef,   workVisible]   = useInView(0.1);
+
+  const handleNavigateHome = useCallback(() => {
+    onNavigate && onNavigate('home');
+  }, [onNavigate]);
+
+  const handleNavigateCaseStudies = useCallback(() => {
+    onNavigate && onNavigate('casestudies');
+  }, [onNavigate]);
 
   return (
     <>
@@ -161,13 +157,13 @@ export default function Branding({ onBack, onNavigate }) {
             <div className="br-hero__actions">
               <button
                 className="br-btn br-btn--primary"
-                onClick={() => onNavigate && onNavigate('home')}
+                onClick={handleNavigateHome}
               >
                 Start a Brand Project
               </button>
               <button
                 className="br-btn br-btn--ghost"
-                onClick={() => onNavigate && onNavigate('casestudies')}
+                onClick={handleNavigateCaseStudies}
               >
                 See Our Work →
               </button>
@@ -297,7 +293,7 @@ export default function Branding({ onBack, onNavigate }) {
           <div className="br-work__footer">
             <button
               className="br-btn br-btn--outline"
-              onClick={() => onNavigate && onNavigate('casestudies')}
+              onClick={handleNavigateCaseStudies}
             >
               View All Case Studies →
             </button>
@@ -320,7 +316,7 @@ export default function Branding({ onBack, onNavigate }) {
             <div className="br-banner__actions">
               <button
                 className="br-btn br-btn--primary br-btn--lg"
-                onClick={() => onNavigate && onNavigate('home')}
+                onClick={handleNavigateHome}
               >
                 Start the Conversation
               </button>

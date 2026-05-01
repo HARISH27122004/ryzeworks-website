@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import '../styles/CaseStudies.css';
 import Footer from '../components/Footer';
+import useInView from '../hooks/useInView';
 
 /* ── Data ── */
 const FILTERS = ['All', 'Branding', 'Web & App', 'Motion', 'Consulting'];
@@ -74,20 +75,6 @@ const CASE_STUDIES = [
   },
 ];
 
-function useInView(threshold = 0.12) {
-  const ref = useRef(null);
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setInView(true); obs.disconnect(); } },
-      { threshold }
-    );
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, [threshold]);
-  return [ref, inView];
-}
-
 function CaseStudyCard({ study, index, onSelect }) {
   const [ref, inView] = useInView(0.1);
   return (
@@ -139,6 +126,16 @@ export default function CaseStudies({ onBack, onNavigate, onStudySelect }) {
   const [activeFilter, setActiveFilter] = useState('All');
   const [heroRef, heroVisible] = useInView(0.1);
   const [filterRef, filterVisible] = useInView(0.1);
+  const [statsRef, statsVisible] = useInView(0.1);
+
+  const handleFilterClick = useCallback((e) => {
+    const filter = e.currentTarget.dataset.filter;
+    if (filter !== undefined) setActiveFilter(filter);
+  }, [setActiveFilter]);
+
+  const handleNavigateHome = useCallback(() => {
+    onNavigate && onNavigate('home');
+  }, [onNavigate]);
 
   const filtered = activeFilter === 'All'
     ? CASE_STUDIES
@@ -210,7 +207,8 @@ export default function CaseStudies({ onBack, onNavigate, onStudySelect }) {
               key={f}
               className={`cs-filter-btn${activeFilter === f ? ' is-active' : ''}`}
               style={{ '--i': i }}
-              onClick={() => setActiveFilter(f)}
+              data-filter={f}
+              onClick={handleFilterClick}
             >
               {f}
             </button>
@@ -239,7 +237,7 @@ export default function CaseStudies({ onBack, onNavigate, onStudySelect }) {
           </h2>
           <button
             className="cs-btn cs-btn--primary"
-            onClick={() => onNavigate && onNavigate('home')}
+            onClick={handleNavigateHome}
           >
             Start a Conversation
           </button>

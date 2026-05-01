@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import '../styles/AboutUs.css';
+import useInView from '../hooks/useInView';
 import Footer from '../components/Footer.jsx';
 
 const stats = [
@@ -55,20 +56,6 @@ const team = [
   { name: 'Dev Krishnan', role: 'Lead Engineer', initials: 'DK', hue: '170' },
   { name: 'Sara Qureshi', role: 'Growth & Partnerships', initials: 'SQ', hue: '320' },
 ];
-
-function useInView(threshold = 0.15) {
-  const ref = useRef(null);
-  const [inView, setInView] = useState(false);
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setInView(true); obs.disconnect(); } },
-      { threshold }
-    );
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, [threshold]);
-  return [ref, inView];
-}
 
 export default function AboutUs({ onBack, onNavigate }) {
   const [heroRef, heroVisible] = useInView(0.1);

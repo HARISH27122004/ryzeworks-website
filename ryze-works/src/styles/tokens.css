@@ -1,0 +1,66 @@
+/* ─── GLOBAL DESIGN TOKENS ─── */
+/* Single source of truth for all shared pages.
+   Extracted from: Branding.css, CaseStudies.css, AboutUs.css,
+   Hero.css, Contact.css, Testimonials.css, Footer.css */
+
+:root {
+  /* ── Font families ── */
+  --font-family-headings: "Roobert", "DM Sans", sans-serif;
+  --font-display: 'DM Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-body: "Roobert", "DM Sans", sans-serif;
+
+  /* ── Brand colors ── */
+  --primary: #63e;
+  --primary-light: #8e64ff;
+  --error: #e23453;
+
+  /* ── Greyscale palette ── */
+  --grey-00:  #fff;
+  --grey-10:  #f4f4ff;
+  --grey-20:  #ececfb;
+  --grey-30:  #dfe1f4;
+  --grey-40:  #babcd2;
+  --grey-50:  #ffff;
+  --grey-60:  #5e6077;
+  --grey-70:  #383a4d;
+  --grey-80:  #2a2b3a;
+  --grey-85:  #212230;
+  --grey-90:  #171825;
+  --grey-95:  #0b0d1c;
+  --grey-100: #010314;
+
+  /* ── Backgrounds ── */
+  --bg-body: var(--grey-100);
+  --bg-body-rgba: rgba(1, 3, 20, 1);
+  --bg-body-alt: rgba(1, 3, 20, 0);
+
+  /* ── Borders ── */
+  --border-color: var(--grey-80);
+
+  /* ── Text colors ── */
+  --text-subtle: var(--grey-50);
+  --text-muted: var(--grey-40);
+  --text-body: var(--grey-30);
+  --text-headings: #cfcdcd;
+
+  /* ── Buttons & effects ── */
+  --btn-bg-glow: #fff6;
+  --btn-bg-primary: #855cf1cc;
+  --btn-color-primary: #fff;
+  --btn-bg-secondary: #342c41cc;
+  --btn-color-secondary: var(--text-headings);
+  --material-effect: 0 0 0 2px #0000000d, 0 0 0 1px #ffffff1a, inset 0 .5px 0 #ffffff80;
+
+  /* ── Font weights ── */
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+
+  /* ── Font sizes (from Hero.css) ── */
+  --font-size-h1: 4.25rem;
+  --font-size-h2: 3.5rem;
+  --font-size-h3: 1.6rem;
+  --font-size-h4: 1.2rem;
+  --font-size-h5: 1.05rem;
+}

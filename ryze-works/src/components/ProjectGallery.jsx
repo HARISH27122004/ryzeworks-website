@@ -1,10 +1,26 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import "../styles/ProjectGallery.css";
 
 export default function ProjectGallery({ project, onBack }) {
   const [lightbox, setLightbox] = useState(null);
   const [columns, setColumns] = useState([[], [], []]);
   const [colCount, setColCount] = useState(3);
+
+  const closeLightbox = useCallback(() => setLightbox(null), []);
+  const stopPropagation = useCallback((e) => e.stopPropagation(), []);
+  const goToPrev = useCallback((e) => {
+    e.stopPropagation();
+    setLightbox(prev => (prev - 1 + project.gallery.length) % project.gallery.length);
+  }, [project.gallery.length]);
+  const goToNext = useCallback((e) => {
+    e.stopPropagation();
+    setLightbox(prev => (prev + 1) % project.gallery.length);
+  }, [project.gallery.length]);
+
+  const handleItemClick = useCallback((e) => {
+    const idx = Number(e.currentTarget.dataset.index);
+    if (!isNaN(idx)) setLightbox(idx);
+  }, []);
 
   // ── Keyboard navigation ──
   useEffect(() => {
@@ -98,12 +114,13 @@ export default function ProjectGallery({ project, onBack }) {
         {columns.map((col, ci) => (
           <div className="gallery-masonry-col" key={ci}>
             {col.map(({ src, index, ratio }) => (
-              <div
-                className="gallery-item"
-                key={index}
-                onClick={() => setLightbox(index)}
-                style={{ "--ratio": ratio }}
-              >
+               <div
+                 className="gallery-item"
+                 key={index}
+                 data-index={index}
+                 onClick={handleItemClick}
+                 style={{ "--ratio": ratio }}
+               >
                 <img
                   src={src}
                   alt={`${project.name} ${index + 1}`}
@@ -120,27 +137,21 @@ export default function ProjectGallery({ project, onBack }) {
 
       {/* ── Lightbox ── */}
       {lightbox !== null && (
-        <div className="gallery-lightbox" onClick={() => setLightbox(null)}>
-          <button className="lightbox-close" onClick={() => setLightbox(null)}>✕</button>
+        <div className="gallery-lightbox" onClick={closeLightbox}>
+          <button className="lightbox-close" onClick={closeLightbox}>✕</button>
           <button
             className="lightbox-prev"
-            onClick={(e) => {
-              e.stopPropagation();
-              setLightbox((lightbox - 1 + project.gallery.length) % project.gallery.length);
-            }}
+            onClick={goToPrev}
           >‹</button>
           <img
             src={project.gallery[lightbox]}
             alt={`${project.name} ${lightbox + 1}`}
             className="lightbox-img"
-            onClick={(e) => e.stopPropagation()}
+            onClick={stopPropagation}
           />
           <button
             className="lightbox-next"
-            onClick={(e) => {
-              e.stopPropagation();
-              setLightbox((lightbox + 1) % project.gallery.length);
-            }}
+            onClick={goToNext}
           >›</button>
           <span className="lightbox-counter">
             {lightbox + 1} / {project.gallery.length}

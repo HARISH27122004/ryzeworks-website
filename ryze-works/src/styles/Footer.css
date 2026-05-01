@@ -1,31 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap');
 
 /* ─── Design tokens ─── */
-:root {
-  --font-family-headings: "Roobert", "DM Sans", sans-serif;
-  --primary: #63e;
-  --primary-light: #8e64ff;
-  --grey-00: #fff;
-  --grey-10: #f4f4ff;
-  --grey-20: #ececfb;
-  --grey-30: #dfe1f4;
-  --grey-40: #babcd2;
-  --grey-60: #5e6077;
-  --grey-70: #383a4d;
-  --grey-80: #2a2b3a;
-  --grey-85: #212230;
-  --grey-90: #171825;
-  --grey-95: #0b0d1c;
-  --grey-100: #010314;
-  --bg-body: var(--grey-100);
-  --border-color: var(--grey-80);
-  --text-headings: #cfcdcd;
-  --text-body: var(--grey-30);
-  --text-muted: var(--grey-40);
-  --btn-bg-primary: #855cf1cc;
-  --btn-color-primary: #fff;
-  --material-effect: 0 0 0 2px #0000000d, 0 0 0 1px #ffffff1a, inset 0 0.5px 0 #ffffff80;
-}
+
 
 /* ─── Footer wrapper ─── */
 .footer {
