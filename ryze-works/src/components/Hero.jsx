@@ -10,8 +10,8 @@ export default function Hero() {
       <section className="lp-hero">
         <div className="Hero_content">
           <h1>
-            Payments infrastructure
-            <br />
+            We craft digital experiences
+            
             built for <span className="lp-hero-accent">the future</span>
           </h1>
 
