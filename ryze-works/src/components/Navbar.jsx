@@ -2,14 +2,13 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import "../styles/Navbar.css";
 
 const NAV_LINKS = [
-  { label: "Home", href: "#home" },
-  { label: "Services", href: "#services" },
-  { label: "Projects", href: "#projects" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Contact", href: "#contact" },
+  { label: "About Us", type: "page", page: "about" },
+  { label: "Careers", type: "page", page: "careers" },
+  { label: "Projects", type: "scroll", id: "projects" },
+  { label: "Contact", type: "scroll", id: "contact" },
 ];
 
-export default function Navbar() {
+export default function Navbar({ onNavigate }) {
   const [scrolled, setScrolled] = useState(false);
   const [showNav, setShowNav] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -23,6 +22,7 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const currentY = window.scrollY;
+
       setScrolled(currentY > 40);
 
       if (currentY <= 50) {
@@ -37,6 +37,7 @@ export default function Navbar() {
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -60,10 +61,27 @@ export default function Navbar() {
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [menuOpen]);
 
   const closeMenu = () => setMenuOpen(false);
+
+  const handleNavClick = (e, item) => {
+    e.preventDefault();
+
+    closeMenu();
+
+    if (item.type === "page") {
+      onNavigate(item.page);
+    }
+
+    if (item.type === "scroll") {
+      onNavigate("home", item.id);
+    }
+  };
 
   return (
     <>
@@ -73,23 +91,40 @@ export default function Navbar() {
           ${showNav ? "show-nav" : "hide-nav"}`}
       >
         {/* Logo */}
-        <a href="#" className="lp-nav-logo">
+        <a
+          href="#"
+          className="lp-nav-logo"
+          onClick={(e) => {
+            e.preventDefault();
+            onNavigate("home");
+          }}
+        >
           <span>Ryze Works</span>
         </a>
 
         {/* Desktop Links */}
         <ul className="lp-nav-links">
-          {NAV_LINKS.map(({ label, href }) => (
-            <li key={label}>
-              <a href={href}>{label}</a>
+          {NAV_LINKS.map((item) => (
+            <li key={item.label}>
+              <a
+                href="#"
+                onClick={(e) => handleNavClick(e, item)}
+              >
+                {item.label}
+              </a>
             </li>
           ))}
         </ul>
 
         {/* Desktop Actions */}
         <div className="lp-nav-actions">
-          <a href="#" className="btn-ghost">Sign in</a>
-          <a href="#" className="btn-nav-cta">Get started</a>
+          <a href="#" className="btn-ghost">
+            Sign in
+          </a>
+
+          <a href="#" className="btn-nav-cta">
+            Get started
+          </a>
         </div>
 
         {/* Mobile Hamburger */}
@@ -133,10 +168,13 @@ export default function Navbar() {
         {/* Menu Content */}
         <div className="fm-inner">
           <ul className="fm-links">
-            {NAV_LINKS.map(({ label, href }, i) => (
-              <li key={label} style={{ "--delay": `${i * 0.07}s` }}>
-                <a href={href} onClick={closeMenu}>
-                  <span>{label}</span>
+            {NAV_LINKS.map((item, i) => (
+              <li key={item.label} style={{ "--delay": `${i * 0.07}s` }}>
+                <a
+                  href="#"
+                  onClick={(e) => handleNavClick(e, item)}
+                >
+                  <span>{item.label}</span>
                   <span className="fm-arrow">↗</span>
                 </a>
               </li>
@@ -146,10 +184,11 @@ export default function Navbar() {
           {/* Mobile Footer Buttons */}
           <div className="fm-footer">
             <div className="fm-footer-btns">
-              <a href="#" className="fm-btn fm-btn-ghost" onClick={closeMenu}>
+              <a href="#" className="fm-btn fm-btn-ghost">
                 Sign in
               </a>
-              <a href="#" className="fm-btn fm-btn-cta" onClick={closeMenu}>
+
+              <a href="#" className="fm-btn fm-btn-cta">
                 Get started
               </a>
             </div>

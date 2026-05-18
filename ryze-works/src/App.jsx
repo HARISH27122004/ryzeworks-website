@@ -250,7 +250,7 @@ const App = () => {
           ) : (
             <>
               <section id="home">
-                <Hero />
+                <Hero onNavigate={handleNavigate} />
               </section>
 
               <section id="services">
@@ -279,3 +279,4 @@ const App = () => {
 };
 
 export default App;
+

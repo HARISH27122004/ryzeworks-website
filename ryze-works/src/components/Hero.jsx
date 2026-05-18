@@ -1,11 +1,12 @@
 import Navbar from "./Navbar";
 import "../styles/Hero.css";
 
-export default function Hero() {
+
+export default function Hero({onNavigate}) {
   return (
     <div className="lp-root">
       <div className="lp-bg" />
-      <Navbar />
+      <Navbar onNavigate={onNavigate} />
 
       <section className="lp-hero">
         <div className="Hero_content">
