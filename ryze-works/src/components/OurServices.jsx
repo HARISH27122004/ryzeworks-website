@@ -4,16 +4,16 @@ import { services } from "../data/services";
 import "../styles/OurServices.css";
 
 const serviceImages = {
-  1: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=900&q=80",
-  2: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=900&q=80",
-  3: "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=900&q=80",
-  4: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=900&q=80",
-  5: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80",
+  1: "https://images.unsplash.com/photo-1601506521937-0121a7fc2a6b?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  2: "https://plus.unsplash.com/premium_photo-1661311862112-a360a205ab1e?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  3: "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  4: "https://images.unsplash.com/photo-1471341971476-ae15ff5dd4ea?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  5: "https://images.unsplash.com/photo-1559523161-0fc0d8b38a7a?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   6: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=900&q=80",
-  7: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=900&q=80",
-  8: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=900&q=80",
-  9: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=900&q=80",
-  10: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=900&q=80",
+  7: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  8: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  9: "https://plus.unsplash.com/premium_photo-1733306503329-7a8c701fa9ad?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  10: "https://plus.unsplash.com/premium_photo-1682140928775-fb5e23bd510f?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
 };
 
 const VisualPanel = ({ feature, index }) => {

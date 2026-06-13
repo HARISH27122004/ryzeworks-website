@@ -4,65 +4,65 @@ import useInView from '../hooks/useInView';
 import Footer from '../components/Footer.jsx';
 
 const stats = [
-  { value: '150+', label: 'Projects Delivered' },
-  { value: '40+', label: 'Global Clients' },
-  { value: '98%', label: 'Client Satisfaction' },
-  { value: '5+', label: 'Years of Impact' },
+  { value: '01', label: 'Our Foundation' },
 ];
 
-const values = [
+const whatWeDo = [
+  { left: 'We make logos', right: 'We create identities people emotionally connect with' },
+  { left: 'We build websites', right: 'We engineer digital experiences that represent authority' },
+  { left: 'We post content', right: 'We shape perception, capture attention, and build brand positioning' },
+  { left: 'We chase vanity metrics', right: 'We build brands with measurable, long-term value' },
+];
+
+const principles = [
   {
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-      </svg>
-    ),
-    title: 'Move Fast',
-    desc: 'We ship with urgency. Speed is a feature, not a tradeoff.',
+    number: '01',
+    title: 'Precision Over Noise',
+    desc: 'Every visual, word, and strategy carries intention. We dont fill space — we design it.',
   },
   {
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-        <circle cx="12" cy="12" r="10" /><path d="M12 8v4l3 3" />
-      </svg>
-    ),
-    title: 'Think Long',
-    desc: 'Every decision is made with the next decade in mind.',
+    number: '02',
+    title: 'Luxury-Level Execution',
+    desc: 'Premium brands demand premium presentation. We hold every output to the highest standard.',
   },
   {
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" />
-        <path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" />
-      </svg>
-    ),
-    title: 'Build Together',
-    desc: 'The best outcomes emerge from radical collaboration.',
+    number: '03',
+    title: 'Built To Scale',
+    desc: 'Everything we create is designed for long-term growth, adaptability, and expansion — not just the moment.',
   },
   {
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-      </svg>
-    ),
-    title: 'Own It',
-    desc: 'We take full responsibility — from first idea to final pixel.',
+    number: '04',
+    title: 'Modern Thinking',
+    desc: 'We stay ahead of trends without becoming dependent on them. Strategy first, always.',
+  },
+  {
+    number: '05',
+    title: 'Obsession With Quality',
+    desc: '"Good enough" doesn\'t survive here. We hold ourselves to a standard most agencies don\'t attempt.',
   },
 ];
 
-const team = [
-  { name: 'Aryan Mehta', role: 'Co-founder & CEO', initials: 'AM', hue: '263' },
-  { name: 'Priya Nair', role: 'Head of Design', initials: 'PN', hue: '210' },
-  { name: 'Dev Krishnan', role: 'Lead Engineer', initials: 'DK', hue: '170' },
-  { name: 'Sara Qureshi', role: 'Growth & Partnerships', initials: 'SQ', hue: '320' },
+const clientTypes = [
+  'Startups with a vision that extends far beyond their current size',
+  'Businesses ready to evolve past where they\'ve been stuck',
+  'Founders building something bigger than themselves',
+  'Brands that understand the difference between existing and dominating',
 ];
+
+const CONTACT_FORM_URL = 'https://forms.gle/nx5dTqipz4s5Rxbd7';
+
+const handleContact = () => {
+  window.open(CONTACT_FORM_URL, '_blank');
+};
 
 export default function AboutUs({ onBack, onNavigate }) {
   const [heroRef, heroVisible] = useInView(0.1);
-  const [statsRef, statsVisible] = useInView(0.2);
-  const [missionRef, missionVisible] = useInView(0.15);
-  const [valuesRef, valuesVisible] = useInView(0.1);
-  const [teamRef, teamVisible] = useInView(0.1);
+  const [foundationRef, foundationVisible] = useInView(0.15);
+  const [whatWeDoRef, whatWeDoVisible] = useInView(0.1);
+  const [principlesRef, principlesVisible] = useInView(0.1);
+  const [clientsRef, clientsVisible] = useInView(0.1);
+  const [philosophyRef, philosophyVisible] = useInView(0.1);
+  const [visionRef, visionVisible] = useInView(0.1);
 
   return (
     <>
@@ -72,6 +72,7 @@ export default function AboutUs({ onBack, onNavigate }) {
             ← Back
           </button>
         )}
+
         {/* ── Ambient background ── */}
         <div className="rw-about__ambient" aria-hidden="true">
           <div className="rw-ambient__orb rw-ambient__orb--1" />
@@ -90,130 +91,168 @@ export default function AboutUs({ onBack, onNavigate }) {
           </div>
 
           <h1 className="rw-hero__heading">
-            We don't just build
-            <span className="rw-hero__heading-accent"> products.</span>
-            <br />
-            We build momentum.
+            Brands don't grow here.
+            <span className="rw-hero__heading-accent"> They evolve.</span>
           </h1>
 
           <p className="rw-hero__sub">
-            Ryze Works is a product studio obsessed with turning ambitious ideas into
-            software that scales. We partner with founders, enterprises and changemakers
-            who refuse to settle for ordinary.
+            We exist at the intersection of strategy, design, and technology — built for brands
+            that are ready to move beyond being seen, and start being remembered.
           </p>
 
           <div className="rw-hero__cta-row">
-            <button className="rw-btn rw-btn--primary">Work With Us</button>
-            <button className="rw-btn rw-btn--ghost">See Our Work →</button>
+            <button className="rw-btn rw-btn--primary" onClick={handleContact}>Work With RYZE</button>
+            {/* <button className="rw-btn rw-btn--ghost" onClick={handleContact}>See Our Work →</button> */}
+            <button className="rw-btn rw-btn--ghost" onClick={() => onNavigate('home', 'projects')}>See Our Work →</button>
           </div>
         </div>
 
-        {/* ══════════ STATS ══════════ */}
+        {/* ══════════ FOUNDATION ══════════ */}
         <div
-          className={`rw-about__stats${statsVisible ? ' is-visible' : ''}`}
-          ref={statsRef}
+          className={`rw-about__foundation${foundationVisible ? ' is-visible' : ''}`}
+          ref={foundationRef}
         >
-          {stats.map(({ value, label }, i) => (
-            <div
-              key={label}
-              className="rw-stat"
-              style={{ '--i': i }}
-            >
-              <span className="rw-stat__value">{value}</span>
-              <span className="rw-stat__label">{label}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* ══════════ MISSION ══════════ */}
-        <div
-          className={`rw-about__mission${missionVisible ? ' is-visible' : ''}`}
-          ref={missionRef}
-        >
-          <div className="rw-mission__left">
-            <p className="rw-section-label">Our Mission</p>
-            <h2 className="rw-mission__heading">
-              Raise the bar for what software can do — and who it can reach.
+          <div className="rw-foundation__left">
+            <p className="rw-section-label">01 / Our Foundation</p>
+            <h2 className="rw-foundation__heading">
+              Built for brands<br />that refuse<br />to be average.
             </h2>
           </div>
 
-          <div className="rw-mission__right">
-            <p className="rw-mission__body">
-              Founded in 2019, Ryze Works started with a simple belief: great software
-              should feel inevitable. We've grown into a full-service product studio
-              with a team of designers, engineers and strategists who care deeply about
-              craft and impact.
-            </p>
-            <p className="rw-mission__body">
-              From zero-to-one startups to enterprise transformations, we bring the same
-              energy to every project — relentless attention to detail, a bias for action,
-              and a genuine obsession with outcomes.
-            </p>
-
-            <div className="rw-mission__tag-row">
-              {['Product Strategy', 'UI/UX Design', 'Engineering', 'Growth'].map(t => (
-                <span key={t} className="rw-tag">{t}</span>
-              ))}
+          <div className="rw-foundation__right">
+            <div className="rw-foundation__block">
+              <span className="rw-foundation__block-label">The Gap We Fill</span>
+              <p className="rw-foundation__block-body">
+                Every brand has potential. Most never unlock it — not because the idea is weak,
+                but because execution lacks clarity.
+              </p>
+            </div>
+            <div className="rw-foundation__block">
+              <span className="rw-foundation__block-label">What We Build</span>
+              <p className="rw-foundation__block-body">
+                We craft premium digital experiences that make businesses look stronger,
+                communicate sharper, and scale faster. From identity to infrastructure, every
+                element is intentionally engineered to position brands at a higher level.
+              </p>
+            </div>
+            <div className="rw-foundation__block">
+              <span className="rw-foundation__block-label">Our Standard</span>
+              <p className="rw-foundation__block-body">
+                Not trendy. Not temporary. We build brands that are timeless, scalable, and
+                impossible to ignore — because the world doesn't need more noise. It needs more clarity.
+              </p>
             </div>
           </div>
         </div>
 
-        {/* ══════════ VALUES ══════════ */}
+        {/* ══════════ WHAT WE REALLY DO ══════════ */}
         <div
-          className={`rw-about__values${valuesVisible ? ' is-visible' : ''}`}
-          ref={valuesRef}
+          className={`rw-about__whatwedo${whatWeDoVisible ? ' is-visible' : ''}`}
+          ref={whatWeDoRef}
         >
-          <p className="rw-section-label">What We Stand For</p>
-          <h2 className="rw-values__heading">Principles that drive us.</h2>
+          <p className="rw-section-label">/ What We Really Do</p>
 
-          <div className="rw-values__grid">
-            {values.map(({ icon, title, desc }, i) => (
-              <div key={title} className="rw-value-card" style={{ '--i': i }}>
-                <div className="rw-value-card__icon">{icon}</div>
-                <h3 className="rw-value-card__title">{title}</h3>
-                <p className="rw-value-card__desc">{desc}</p>
+          <div className="rw-whatwedo__list">
+            {whatWeDo.map(({ left, right }, i) => (
+              <div key={i} className="rw-whatwedo__row" style={{ '--i': i }}>
+                <span className="rw-whatwedo__left">{left}</span>
+                <span className="rw-whatwedo__arrow">→</span>
+                <span className="rw-whatwedo__right">{right}</span>
               </div>
             ))}
           </div>
         </div>
 
-        {/* ══════════ TEAM ══════════ */}
+        {/* ══════════ PRINCIPLES ══════════ */}
         <div
-          className={`rw-about__team${teamVisible ? ' is-visible' : ''}`}
-          ref={teamRef}
+          className={`rw-about__principles${principlesVisible ? ' is-visible' : ''}`}
+          ref={principlesRef}
         >
-          <p className="rw-section-label">The People</p>
-          <h2 className="rw-team__heading">Built by a team that gives a damn.</h2>
+          <div className="rw-principles__header">
+            <div>
+              <h2 className="rw-principles__heading">
+                The RYZE<br />Standard
+              </h2>
+            </div>
+            <p className="rw-principles__side-label">05 Principles</p>
+          </div>
 
-          <div className="rw-team__grid">
-            {team.map(({ name, role, initials, hue }, i) => (
-              <div key={name} className="rw-team-card" style={{ '--i': i, '--hue': hue }}>
-                <div className="rw-team-card__avatar">
-                  <span>{initials}</span>
-                  <div className="rw-team-card__avatar-ring" />
-                </div>
-                <div className="rw-team-card__info">
-                  <span className="rw-team-card__name">{name}</span>
-                  <span className="rw-team-card__role">{role}</span>
-                </div>
-                <div className="rw-team-card__shine" />
+          <div className="rw-principles__grid">
+            {principles.map(({ number, title, desc }, i) => (
+              <div key={number} className="rw-principle-card" style={{ '--i': i }}>
+                <span className="rw-principle-card__number">{number}</span>
+                <h3 className="rw-principle-card__title">{title}</h3>
+                <p className="rw-principle-card__desc">{desc}</p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* ══════════ CTA BANNER ══════════ */}
-        <div className="rw-about__banner">
+        {/* ══════════ WHO WE WORK WITH ══════════ */}
+        <div
+          className={`rw-about__clients${clientsVisible ? ' is-visible' : ''}`}
+          ref={clientsRef}
+        >
+          <div className="rw-clients__left">
+            <p className="rw-section-label">/ Who We Work With</p>
+            <h2 className="rw-clients__heading">
+              We work with brands<br />that want to lead —<br />not follow.
+            </h2>
+          </div>
+
+          <div className="rw-clients__list">
+            {clientTypes.map((type, i) => (
+              <div key={i} className="rw-client-item" style={{ '--i': i }}>
+                <span className="rw-client-item__num">0{i + 1}</span>
+                <p className="rw-client-item__text">{type}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ══════════ PHILOSOPHY ══════════ */}
+        <div
+          className={`rw-about__philosophy${philosophyVisible ? ' is-visible' : ''}`}
+          ref={philosophyRef}
+        >
+          <p className="rw-section-label">/ Our Philosophy</p>
+          <blockquote className="rw-philosophy__quote">
+            The strongest brands are not the loudest.<br />
+            They are the clearest.
+          </blockquote>
+          <div className="rw-philosophy__lines">
+            <p>A powerful brand speaks before you do.</p>
+            <p>It influences before it sells.</p>
+            <p>It earns trust before the first conversation begins.</p>
+          </div>
+        </div>
+
+        {/* ══════════ VISION / CTA BANNER ══════════ */}
+        <div
+          className={`rw-about__vision${visionVisible ? ' is-visible' : ''}`}
+          ref={visionRef}
+        >
           <div className="rw-banner__glow" aria-hidden="true" />
-          <p className="rw-section-label">Ready to Ryze?</p>
-          <h2 className="rw-banner__heading">
-            Let's build something <span className="rw-banner__accent">worth talking about.</span>
-          </h2>
-          <button className="rw-btn rw-btn--primary rw-btn--lg">Start a Conversation</button>
+          <p className="rw-vision__vertical-label">Our Vision</p>
+          <div className="rw-vision__content">
+            <h2 className="rw-vision__heading">
+              Built from scratch.<br />
+              <span className="rw-banner__accent">Engineered<br />to scale.</span>
+            </h2>
+            <div className="rw-vision__right">
+              <p className="rw-vision__body">
+                RYZE was built for businesses that want more than visibility — more than
+                temporary growth. We build brands with presence, authority, and the
+                infrastructure to last. Our vision is a new generation of brands that influence
+                culture, dominate digitally, and leave a lasting impact.
+              </p>
+              <button className="rw-btn rw-btn--primary rw-btn--lg" onClick={handleContact}>Work With RYZE →</button>
+            </div>
+          </div>
         </div>
 
       </section>
-      <Footer onNavigate={onNavigate}/>
+      <Footer onNavigate={onNavigate} />
     </>
   );
 }
